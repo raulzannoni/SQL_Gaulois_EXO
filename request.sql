@@ -88,4 +88,10 @@ INNER JOIN casque ON type_casque.id_type_casque = casque.id_type_casque
 GROUP BY nom_type_casque
 ORDER BY Count DESC
 
+/*Request 12*/
+SELECT nom_potion FROM potion
+INNER JOIN composer ON potion.id_potion = composer.id_potion
+INNER JOIN ingredient ON composer.id_ingredient = ingredient.id_ingredient
+WHERE ingredient.nom_ingredient = "Poisson frais"
+
 
