@@ -98,4 +98,9 @@ WHERE ingredient.nom_ingredient = "Poisson frais"
 SELECT nom_lieu FROM lieu
 WHERE id_lieu != 1
 
+/*Request 14*/
+SELECT nom_personnage, personnage.id_personnage, autoriser_boire.id_potion FROM personnage
+LEFT JOIN autoriser_boire ON personnage.id_personnage = autoriser_boire.id_personnage
+HAVING ISNULL(autoriser_boire.id_potion)
+
 
