@@ -29,3 +29,8 @@ INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
 GROUP BY nom_personnage
 ORDER BY nom_personnage
 
+/*Request 4*/
+SELECT nom_specialite, COUNT(personnage.id_personnage) FROM specialite
+INNER JOIN personnage ON specialite.id_specialite = personnage.id_specialite
+GROUP BY nom_specialite
+ORDER BY COUNT(personnage.id_personnage) DESC
