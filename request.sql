@@ -94,4 +94,8 @@ INNER JOIN composer ON potion.id_potion = composer.id_potion
 INNER JOIN ingredient ON composer.id_ingredient = ingredient.id_ingredient
 WHERE ingredient.nom_ingredient = "Poisson frais"
 
+/*Request 13*/ /*Incomplet*/
+SELECT nom_lieu FROM lieu
+WHERE id_lieu != 1
+
 
