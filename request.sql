@@ -15,3 +15,17 @@ SELECT personnage.id_lieu, lieu.nom_lieu, COUNT(nom_personnage) FROM personnage
 INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
 GROUP BY personnage.id_lieu
 ORDER BY COUNT(nom_personnage) DESC
+
+/*Request 3*/
+SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu FROM personnage 
+INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
+INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
+GROUP BY lieu.nom_lieu
+ORDER BY lieu.nom_lieu
+
+SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu FROM personnage 
+INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
+INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
+GROUP BY nom_personnage
+ORDER BY nom_personnage
+
