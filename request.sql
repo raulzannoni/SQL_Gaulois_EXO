@@ -56,3 +56,8 @@ INNER JOIN composer ON ingredient.id_ingredient = composer.id_ingredient
 INNER JOIN potion ON composer.id_potion = potion.id_potion
 WHERE potion.id_potion = 3
 
+/*Request 8*/ /*Doute*/
+SELECT personnage.nom_personnage, qtepersonnage
+FROM prendre_casque
+RIGHT JOIN personnage ON prendre_casque.id_personnage = personnage.id_personnage
+WHERE id_bataille = 1
