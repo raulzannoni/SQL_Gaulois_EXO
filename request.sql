@@ -41,3 +41,12 @@ INNER JOIN lieu ON bataille.id_lieu = lieu.id_lieu
 GROUP BY date_bataille
 ORDER BY date_bataille desc
 
+/*Request 6*/
+SELECT nom_potion, SUM(ingredient.cout_ingredient*composer.qte) AS cout_potion 
+FROM potion
+INNER JOIN composer ON potion.id_potion = composer.id_potion
+INNER JOIN ingredient ON composer.id_ingredient = ingredient.id_ingredient
+GROUP BY nom_potion
+ORDER BY cout_potion DESC
+
+
