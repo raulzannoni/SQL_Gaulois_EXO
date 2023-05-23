@@ -63,6 +63,7 @@ RIGHT JOIN personnage ON prendre_casque.id_personnage = personnage.id_personnage
 WHERE id_bataille = 1
 GROUP BY qte
 ORDER BY qte DESC
+LIMIT 1
 
 /*Request 9*/ 
 SELECT personnage.nom_personnage, potion.nom_potion, dose_boire
@@ -71,3 +72,11 @@ INNER JOIN personnage ON boire.id_personnage = personnage.id_personnage
 INNER JOIN potion ON boire.id_potion = potion.id_potion
 GROUP BY dose_boire
 ORDER BY dose_boire DESC
+
+/*Request 10*/ 
+SELECT bataille.nom_bataille AS Bataille , SUM(qte) AS Casques
+FROM prendre_casque
+INNER JOIN bataille ON prendre_casque.id_bataille = bataille.id_bataille
+GROUP BY bataille.nom_bataille
+ORDER BY Casques DESC
+LIMIT 1
