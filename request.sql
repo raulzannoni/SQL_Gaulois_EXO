@@ -103,4 +103,7 @@ SELECT nom_personnage, personnage.id_personnage, autoriser_boire.id_potion FROM 
 LEFT JOIN autoriser_boire ON personnage.id_personnage = autoriser_boire.id_personnage
 HAVING ISNULL(autoriser_boire.id_potion)
 
-
+/*Request 15*/
+SELECT nom_personnage, personnage.id_personnage, autoriser_boire.id_potion FROM personnage
+LEFT JOIN autoriser_boire ON personnage.id_personnage = autoriser_boire.id_personnage
+WHERE autoriser_boire.id_potion != 1 OR ISNULL(autoriser_boire.id_potion)
