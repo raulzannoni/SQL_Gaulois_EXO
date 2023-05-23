@@ -49,4 +49,10 @@ INNER JOIN ingredient ON composer.id_ingredient = ingredient.id_ingredient
 GROUP BY nom_potion
 ORDER BY cout_potion DESC
 
+/*Request 7*/
+SELECT nom_ingredient, cout_ingredient, composer.qte 
+FROM ingredient
+INNER JOIN composer ON ingredient.id_ingredient = composer.id_ingredient
+INNER JOIN potion ON composer.id_potion = potion.id_potion
+WHERE potion.id_potion = 3
 
