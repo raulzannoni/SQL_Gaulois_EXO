@@ -65,3 +65,9 @@ GROUP BY qte
 ORDER BY qte DESC
 
 /*Request 9*/ 
+SELECT personnage.nom_personnage, potion.nom_potion, dose_boire
+FROM boire
+INNER JOIN personnage ON boire.id_personnage = personnage.id_personnage
+INNER JOIN potion ON boire.id_potion = potion.id_potion
+GROUP BY dose_boire
+ORDER BY dose_boire DESC
