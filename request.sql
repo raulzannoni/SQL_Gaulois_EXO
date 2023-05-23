@@ -34,3 +34,10 @@ SELECT nom_specialite, COUNT(personnage.id_personnage) FROM specialite
 INNER JOIN personnage ON specialite.id_specialite = personnage.id_specialite
 GROUP BY nom_specialite
 ORDER BY COUNT(personnage.id_personnage) DESC
+
+/*Request 5*/
+SELECT nom_bataille, DATE_FORMAT(date_bataille, "%d %m %Y"), lieu.nom_lieu FROM bataille
+INNER JOIN lieu ON bataille.id_lieu = lieu.id_lieu
+GROUP BY date_bataille
+ORDER BY date_bataille desc
+
