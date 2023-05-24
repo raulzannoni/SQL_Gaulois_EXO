@@ -22,7 +22,7 @@ ORDER BY COUNT(nom_personnage) DESC
 SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu FROM personnage 
 INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
 INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
-ORDER BY lieu.nom_lieu
+ORDER BY lieu.nom_lieu, personnage.nom
 
 SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu FROM personnage 
 INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
@@ -99,7 +99,7 @@ ORDER BY Count DESC
 SELECT nom_potion FROM potion
 INNER JOIN composer ON potion.id_potion = composer.id_potion
 INNER JOIN ingredient ON composer.id_ingredient = ingredient.id_ingredient
-WHERE ingredient.nom_ingredient = "Poisson frais"
+WHERE LOWER(ingredient.nom_ingredient) = "poisson frais"
 
 /*Request 13*/ /*Correction*/
 SELECT l.nom_lieu, COUNT(p.id_lieu) AS Habitants
