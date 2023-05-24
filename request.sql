@@ -169,9 +169,16 @@ SET personnage.id_lieu = (
 		) 
 WHERE nom_personnage = 'Zérozérosix'
 
-/*Request E*/ /*Doute*/
+/*Request E*/ /*Correction*/
 DELETE FROM composer 
-WHERE id_potion = 9 AND id_ingredient = 19
+WHERE id_potion = (	SELECT p.id_potion
+							FROM potion p
+							WHERE p.nom_potion = 'Soupe' 
+							)
+AND id_ingredient = (SELECT i.id_ingredient
+							FROM ingredient i
+							WHERE i.nom_ingredient = 'Persil' 
+							)
 
 /*Request F*/ /*Doute*/
 UPDATE prendre_casque 
