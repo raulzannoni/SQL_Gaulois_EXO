@@ -38,7 +38,6 @@ ORDER BY COUNT(personnage.id_personnage) DESC
 /*Request 5*/
 SELECT nom_bataille, DATE_FORMAT(date_bataille, "%d %m %Y"), lieu.nom_lieu FROM bataille
 INNER JOIN lieu ON bataille.id_lieu = lieu.id_lieu
-GROUP BY date_bataille
 ORDER BY date_bataille desc
 
 /*Request 6*/
