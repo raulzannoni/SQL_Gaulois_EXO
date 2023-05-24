@@ -125,3 +125,7 @@ DELETE FROM casque WHERE nom_casque = 'Grecs'
 UPDATE personnage
 SET id_lieu = 9
 WHERE nom_personnage = 'Zérozérosix'
+
+/*Request E*/ /*Doute*/
+DELETE FROM composer 
+WHERE id_potion = 9 AND id_ingredient = 19
