@@ -172,15 +172,26 @@ WHERE nom_personnage = 'Zérozérosix'
 /*Request E*/ /*Correction*/
 DELETE FROM composer 
 WHERE id_potion = (	SELECT p.id_potion
-							FROM potion p
-							WHERE p.nom_potion = 'Soupe' 
-							)
-AND id_ingredient = (SELECT i.id_ingredient
-							FROM ingredient i
-							WHERE i.nom_ingredient = 'Persil' 
-							)
+				    FROM potion p
+					WHERE p.nom_potion = 'Soupe' 
+					)
+AND id_ingredient = (   SELECT i.id_ingredient
+					    FROM ingredient i
+						WHERE i.nom_ingredient = 'Persil' 
+					    )
 
-/*Request F*/ /*Doute*/
+/*Request F*/ /*Correction*/
 UPDATE prendre_casque 
-SET id_casque = 12, qte = 42
-WHERE id_personnage = 5 AND id_bataille = 9
+SET prendre_casque.id_casque = (SELECT c.id_casque
+								FROM casque c
+								WHERE c.nom_casque = 'Weisenau'
+								), 
+	prendre_casque.qte = 42
+WHERE prendre_casque.id_personnage = (	SELECT p.id_personnage
+										FROM personnage p
+										WHERE p.nom_personnage = 'Obélix'
+										)   
+AND prendre_casque.id_bataille = (	SELECT b.id_bataille
+									FROM bataille b
+									WHERE b.nom_bataille = 'Attaque de la banque postale'
+									)	
