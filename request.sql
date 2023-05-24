@@ -58,21 +58,23 @@ INNER JOIN composer ON ingredient.id_ingredient = composer.id_ingredient
 INNER JOIN potion ON composer.id_potion = potion.id_potion
 WHERE potion.id_potion = 3
 
-/*Request 8*/ /*Doute*/
-SELECT personnage.nom_personnage, max(qte)
-FROM prendre_casque
-RIGHT JOIN personnage ON prendre_casque.id_personnage = personnage.id_personnage
-WHERE id_bataille = 1
-GROUP BY qte
-ORDER BY qte DESC
-/*LIMIT 1
+/*Request 8*/ /*Quentin correction*/
+SELECT p.nom_personnage, SUM(pc.qte) AS nb_casques
+FROM personnage p, bataille b, prendre_casque pc
+WHERE p.id_personnage = pc.id_personnage AND pc.id_bataille = b.id_bataille AND b.nom_bataille = 'Bataille du village gaulois'
+GROUP BY p.id_personnage
+HAVING nb_casques >= ALL(
+	SELECT SUM(pc.qte)
+	FROM prendre_casque pc, bataille b
+	WHERE b.id_bataille = pc.id_bataille AND b.nom_bataille = 'Bataille du village gaulois'
+	GROUP BY pc.id_personnage
+	)
 
 /*Request 9*/ 
 SELECT personnage.nom_personnage, potion.nom_potion, dose_boire
 FROM boire
 INNER JOIN personnage ON boire.id_personnage = personnage.id_personnage
 INNER JOIN potion ON boire.id_potion = potion.id_potion
-GROUP BY dose_boire
 ORDER BY dose_boire DESC
 
 /*Request 10*/ /*Doute*/
