@@ -1,6 +1,8 @@
+/*-----EXAMPLE----*/
 SELECT nom_personnage
 FROM personnage
 
+/*-----EXAMPLE----*/
 SELECT nom_personnage, id_personnage
 FROM personnage
 WHERE id_lieu = 1
@@ -115,3 +117,6 @@ VALUES ('Champdeblix', 'Hentassion', 6, 12)
 /*Request B*/ /*Doute*/
 INSERT INTO autoriser_boire (id_potion, id_personnage)
 VALUES (1, 12)
+
+/*Request C*/
+DELETE FROM casque WHERE nom_casque = 'Grecs'
