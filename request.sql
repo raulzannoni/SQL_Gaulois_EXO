@@ -102,9 +102,17 @@ INNER JOIN composer ON potion.id_potion = composer.id_potion
 INNER JOIN ingredient ON composer.id_ingredient = ingredient.id_ingredient
 WHERE ingredient.nom_ingredient = "Poisson frais"
 
-/*Request 13*/ /*Incomplet*/
-SELECT nom_lieu FROM lieu
-WHERE id_lieu != 1
+/*Request 13*/ /*Correction*/
+SELECT l.nom_lieu, COUNT(p.id_lieu) AS Habitants
+FROM lieu l, personnage p
+WHERE l.nom_lieu != 'Village gaulouis' AND l.id_lieu = p.id_lieu
+GROUP BY l.nom_lieu
+HAVING Habitants >= ALL(
+	SELECT COUNT(p.id_lieu)
+	FROM lieu l, personnage p
+	WHERE l.nom_lieu != 'Village gaulouis' AND l.id_lieu = p.id_lieu
+	GROUP BY l.nom_lieu
+	)
 
 /*Request 14*/
 SELECT nom_personnage, personnage.id_personnage, autoriser_boire.id_potion FROM personnage
@@ -116,9 +124,25 @@ SELECT nom_personnage, personnage.id_personnage, autoriser_boire.id_potion FROM 
 LEFT JOIN autoriser_boire ON personnage.id_personnage = autoriser_boire.id_personnage
 WHERE autoriser_boire.id_potion != 1 OR ISNULL(autoriser_boire.id_potion)
 
-/*Request A*/ /*Doute*/
-INSERT INTO personnage (nom_personnage, adresse_personnage, id_lieu, id_specialite)
-VALUES ('Champdeblix', 'Hentassion', 6, 12)
+/*Request A*/ /*Correction*/
+INSERT INTO personnage (	
+									nom_personnage, 
+									adresse_personnage, 
+									id_lieu, 
+									id_specialite
+									)
+VALUES (
+			'Champdeblix', 
+			'Hentassion', 
+			(	SELECT l.id_lieu
+				FROM lieu l
+				WHERE l.nom_lieu = 'Rotomagus'
+				), 
+			(	SELECT s.id_specialite
+				FROM specialite s
+				WHERE s.nom_specialite = 'Agriculteur'
+				)
+			)
 
 /*Request B*/ /*Doute*/
 INSERT INTO autoriser_boire (id_potion, id_personnage)
@@ -127,7 +151,7 @@ VALUES (1, 12)
 /*Request C*/
 DELETE FROM casque WHERE nom_casque = 'Grecs'
 
-/*Request D*/
+/*Request D*/ /*Doute*/
 UPDATE personnage
 SET id_lieu = 9
 WHERE nom_personnage = 'Zérozérosix'
