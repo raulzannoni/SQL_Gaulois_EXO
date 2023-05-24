@@ -120,36 +120,34 @@ LEFT JOIN autoriser_boire ON personnage.id_personnage = autoriser_boire.id_perso
 WHERE autoriser_boire.id_potion != 1 OR ISNULL(autoriser_boire.id_potion)
 
 /*Request A*/ /*Correction*/
-INSERT INTO personnage (	
-						    nom_personnage, 
-							adresse_personnage, 
-							id_lieu, 
-							id_specialite
+INSERT INTO personnage (nom_personnage, 
+						adresse_personnage, 
+						id_lieu, 
+						id_specialite
 						)
-VALUES (    'Champdeblix', 
-			'Hentassion', 
-			(	SELECT l.id_lieu
-				FROM lieu l
-				WHERE l.nom_lieu = 'Rotomagus'
-				), 
-			(	SELECT s.id_specialite
-				FROM specialite s
-				WHERE s.nom_specialite = 'Agriculteur'
-				)
+VALUES ('Champdeblix', 
+		'Hentassion', 
+		(   SELECT l.id_lieu
+		    FROM lieu l
+			WHERE l.nom_lieu = 'Rotomagus'
+			), 
+		(	SELECT s.id_specialite
+			FROM specialite s
+			WHERE s.nom_specialite = 'Agriculteur'
 			)
+		)
 
 /*Request B*/ /*Correction*/
 INSERT INTO autoriser_boire (id_potion, id_personnage)
-VALUES (
-			(	SELECT p.id_potion
-				FROM potion p
-				WHERE p.nom_potion = 'Magique'
+VALUES ((	SELECT p.id_potion
+			FROM potion p
+			WHERE p.nom_potion = 'Magique'
 			),
-			(	SELECT p.id_personnage
-				FROM personnage p
-				WHERE p.nom_personnage = 'Bonemine'
+		(	SELECT p.id_personnage
+			FROM personnage p
+			WHERE p.nom_personnage = 'Bonemine'
 			)
-			)
+        )
 
 /*Request C*/ /*Correction*/
 DELETE FROM casque
