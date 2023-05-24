@@ -126,11 +126,11 @@ WHERE autoriser_boire.id_potion != 1 OR ISNULL(autoriser_boire.id_potion)
 
 /*Request A*/ /*Correction*/
 INSERT INTO personnage (	
-									nom_personnage, 
-									adresse_personnage, 
-									id_lieu, 
-									id_specialite
-									)
+						    nom_personnage, 
+							adresse_personnage, 
+							id_lieu, 
+							id_specialite
+						)
 VALUES (
 			'Champdeblix', 
 			'Hentassion', 
@@ -144,9 +144,18 @@ VALUES (
 				)
 			)
 
-/*Request B*/ /*Doute*/
+/*Request B*/ /*Correction*/
 INSERT INTO autoriser_boire (id_potion, id_personnage)
-VALUES (1, 12)
+VALUES (
+			(	SELECT p.id_potion
+				FROM potion p
+				WHERE p.nom_potion = 'Magique'
+			),
+			(	SELECT p.id_personnage
+				FROM personnage p
+				WHERE p.nom_personnage = 'Bonemine'
+			)
+			)
 
 /*Request C*/
 DELETE FROM casque WHERE nom_casque = 'Grecs'
