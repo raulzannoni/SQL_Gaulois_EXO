@@ -22,7 +22,6 @@ ORDER BY COUNT(nom_personnage) DESC
 SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu FROM personnage 
 INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
 INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
-GROUP BY lieu.nom_lieu
 ORDER BY lieu.nom_lieu
 
 SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu FROM personnage 
