@@ -18,7 +18,7 @@ INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
 GROUP BY personnage.id_lieu
 ORDER BY COUNT(nom_personnage) DESC
 
-/*Request 3*/ /*Doute*/
+/*Request 3*/
 SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu 
 FROM personnage 
 INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
