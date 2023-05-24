@@ -107,3 +107,7 @@ HAVING ISNULL(autoriser_boire.id_potion)
 SELECT nom_personnage, personnage.id_personnage, autoriser_boire.id_potion FROM personnage
 LEFT JOIN autoriser_boire ON personnage.id_personnage = autoriser_boire.id_personnage
 WHERE autoriser_boire.id_potion != 1 OR ISNULL(autoriser_boire.id_potion)
+
+/*Request A*/ /*Doute*/
+INSERT INTO personnage (nom_personnage, adresse_personnage, id_lieu, id_specialite)
+VALUES ('Champdeblix', 'Hentassion', 6, 12)
