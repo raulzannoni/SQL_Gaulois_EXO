@@ -77,13 +77,17 @@ INNER JOIN personnage ON boire.id_personnage = personnage.id_personnage
 INNER JOIN potion ON boire.id_potion = potion.id_potion
 ORDER BY dose_boire DESC
 
-/*Request 10*/ /*Doute*/
-SELECT bataille.nom_bataille AS Bataille , SUM(qte) AS Casques
-FROM prendre_casque
-INNER JOIN bataille ON prendre_casque.id_bataille = bataille.id_bataille
-GROUP BY bataille.nom_bataille
-ORDER BY Casques DESC
-/*LIMIT 1
+/*Request 10*/ /*Correction*/
+SELECT b.nom_bataille , SUM(pc.qte) AS total
+FROM prendre_casque pc, bataille b
+WHERE pc.id_bataille = b.id_bataille
+GROUP BY b.nom_bataille
+HAVING total >= ALL (
+	SELECT SUM(pc.qte)
+	FROM prendre_casque pc, bataille b
+	WHERE pc.id_bataille = b.id_bataille
+	GROUP BY b.nom_bataille
+	)
 
 /*Request 11*/
 SELECT nom_type_casque, COUNT(casque.nom_casque) AS Count, SUM(casque.cout_casque) AS Cout
