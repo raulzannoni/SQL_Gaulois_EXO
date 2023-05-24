@@ -19,15 +19,11 @@ GROUP BY personnage.id_lieu
 ORDER BY COUNT(nom_personnage) DESC
 
 /*Request 3*/ /*Doute*/
-SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu FROM personnage 
+SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu 
+FROM personnage 
 INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
 INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
-ORDER BY lieu.nom_lieu, personnage.nom
-
-SELECT nom_personnage, specialite.nom_specialite , adresse_personnage, lieu.nom_lieu FROM personnage 
-INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
-INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
-ORDER BY nom_personnage
+ORDER BY lieu.nom_lieu, personnage.nom_personnage
 
 /*Request 4*/
 SELECT nom_specialite, COUNT(personnage.id_personnage) FROM specialite
@@ -130,8 +126,7 @@ INSERT INTO personnage (
 							id_lieu, 
 							id_specialite
 						)
-VALUES (
-			'Champdeblix', 
+VALUES (    'Champdeblix', 
 			'Hentassion', 
 			(	SELECT l.id_lieu
 				FROM lieu l
@@ -156,8 +151,17 @@ VALUES (
 			)
 			)
 
-/*Request C*/
-DELETE FROM casque WHERE nom_casque = 'Grecs'
+/*Request C*/ /*Correction*/
+DELETE FROM casque
+WHERE casque.id_type_casque IN(	SELECT id_type_casque 
+								FROM	type_casque
+								WHERE nom_type_casque = 'Grec'
+                                )
+AND casque.id_casque NOT IN (	SELECT id_casque
+								FROM	prendre_casque
+                                )
+
+
 
 /*Request D*/ /*Correction*/
 UPDATE personnage
