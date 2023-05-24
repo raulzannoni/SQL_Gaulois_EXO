@@ -129,3 +129,8 @@ WHERE nom_personnage = 'Zérozérosix'
 /*Request E*/ /*Doute*/
 DELETE FROM composer 
 WHERE id_potion = 9 AND id_ingredient = 19
+
+/*Request F*/ /*Doute*/
+UPDATE prendre_casque 
+SET id_casque = 12, qte = 42
+WHERE id_personnage = 5 AND id_bataille = 9
