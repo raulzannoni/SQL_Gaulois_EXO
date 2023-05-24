@@ -53,7 +53,9 @@ SELECT nom_ingredient, cout_ingredient, composer.qte
 FROM ingredient
 INNER JOIN composer ON ingredient.id_ingredient = composer.id_ingredient
 INNER JOIN potion ON composer.id_potion = potion.id_potion
-WHERE potion.id_potion = 3
+WHERE potion.id_potion = (	SELECT potion.id_potion
+							WHERE potion.nom_potion = 'Santé'				
+							)
 
 /*Request 8*/ /*Quentin correction*/
 SELECT p.nom_personnage, SUM(pc.qte) AS nb_casques
