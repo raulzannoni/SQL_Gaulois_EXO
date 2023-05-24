@@ -120,3 +120,8 @@ VALUES (1, 12)
 
 /*Request C*/
 DELETE FROM casque WHERE nom_casque = 'Grecs'
+
+/*Request D*/
+UPDATE personnage
+SET id_lieu = 9
+WHERE nom_personnage = 'Zérozérosix'
