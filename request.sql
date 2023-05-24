@@ -160,9 +160,13 @@ VALUES (
 /*Request C*/
 DELETE FROM casque WHERE nom_casque = 'Grecs'
 
-/*Request D*/ /*Doute*/
+/*Request D*/ /*Correction*/
 UPDATE personnage
-SET id_lieu = 9
+SET personnage.id_lieu = (
+		SELECT l.id_lieu
+		FROM lieu l
+		WHERE l.nom_lieu = 'Condate'
+		) 
 WHERE nom_personnage = 'Zérozérosix'
 
 /*Request E*/ /*Doute*/
